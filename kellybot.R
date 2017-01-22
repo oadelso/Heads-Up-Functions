@@ -34,11 +34,14 @@ kellybot<-function(initialwealth,wealth,usercards,communitycards=0,behavior=1,ke
     frac=kellyfrac*(pw*(b+1)-1)/b;
   }else if (behavior==3){
     if (wealth<initialwealth){
-      #wealth is lower than initial wealth => risk seeking, use 1.5 kelly
-      frac=1.5*(pw*(b+1)-1)/b;
-      }else{
+      #wealth is lower than initial wealth => risk seeking, use 2.0 kelly
+      frac=2.0*(pw*(b+1)-1)/b;
+      }else if (wealth>initialwealth){
         #risk averse, use half kelly
       frac=0.5*(pw*(b+1)-1)/b;
+      }else{
+        #use full kelly
+        frac=(pw*(b+1)-1)/b; 
       }
   }
   
